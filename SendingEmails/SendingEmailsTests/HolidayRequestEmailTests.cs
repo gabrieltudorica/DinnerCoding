@@ -21,7 +21,7 @@ namespace SendingEmailsTests
         [ExpectedException(typeof(ArgumentException))]
         public void EmptyEmployeeName_ThrowsException()
         {
-            var request = new HolidayRequest(string.Empty, new MailAddress(_validEmailAddress), new MailAddress(_validEmailAddress), DateTime.MinValue, DateTime.MinValue);
+            var request = new HolidayRequest(string.Empty, new MailAddress(_validEmailAddress), new MailAddress(_validEmailAddress), new TimeInterval());
             var requestSender = new HolidayRequestSender(request);
         }
 
@@ -29,7 +29,7 @@ namespace SendingEmailsTests
         [ExpectedException(typeof(ArgumentException))]
         public void DefaultRequestInterval_ThrowsException()
         {
-            var request = new HolidayRequest(string.Empty, new MailAddress(_validEmailAddress), new MailAddress(_validEmailAddress), new DateTime(), new DateTime());
+            var request = new HolidayRequest(string.Empty, new MailAddress(_validEmailAddress), new MailAddress(_validEmailAddress), new TimeInterval());
             var requestSender = new HolidayRequestSender(request);
         }
     }

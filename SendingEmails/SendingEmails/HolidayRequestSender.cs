@@ -24,7 +24,8 @@ namespace SendingEmails
                 throw  new ArgumentException();
             }
 
-            if(_request.From == DateTime.MinValue || _request.To == DateTime.MinValue)
+            if(_request.TimeInterval.From == DateTime.MinValue || 
+                _request.TimeInterval.To == DateTime.MinValue)
             {
                 throw new ArgumentException();
             }

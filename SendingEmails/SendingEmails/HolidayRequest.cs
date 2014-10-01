@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Mail;
+﻿using System.Net.Mail;
 
 namespace SendingEmails
 {
@@ -9,17 +8,15 @@ namespace SendingEmails
         public MailAddress EmployeeEmail { get; private set; }
         public MailAddress ManagerEmail { get; private set; }
 
-        public DateTime From { get; private set; }
-        public DateTime To { get; private set; }
+        public TimeInterval TimeInterval { get; private set; }
 
-        public HolidayRequest(string employeeName, MailAddress employeeEmail, MailAddress managerEmail, DateTime from, DateTime to)
+        public HolidayRequest(string employeeName, MailAddress employeeEmail, MailAddress managerEmail, TimeInterval timeInterval)
         {
             EmployeeName = employeeName;
             EmployeeEmail = employeeEmail;
             ManagerEmail = managerEmail;
 
-            From = from;
-            To = to;
+            TimeInterval = timeInterval;
         }
     }
 }
