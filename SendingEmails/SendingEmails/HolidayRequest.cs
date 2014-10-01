@@ -1,19 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SendingEmails
 {
     public class HolidayRequest
     {
-        public string EmployeeName;
-        public string EmployeeEmail;
-        public string ManagerEmail;
+        public string EmployeeName { get; private set; }    
+        private string _employeeEmail;
+        private string _managerEmail;
 
-        // holiday period
-        public DateTime From;
-        public DateTime To;
+        private DateTime _from;
+        private DateTime _to;
+
+        public HolidayRequest(string employeeName, string employeeEmail, string managerEmail, DateTime from, DateTime to)
+        {
+            EmployeeName = employeeName;
+            _employeeEmail = employeeEmail;
+            _managerEmail = managerEmail;
+
+            _from = from;
+            _to = to;
+        }
     }
 }
