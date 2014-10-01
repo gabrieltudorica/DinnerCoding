@@ -6,11 +6,13 @@ namespace SendingEmails
     public class HolidayRequestComposer
     {
         private readonly HolidayRequest _request;
+        private readonly IHolidayRequestComposerConfig _config;
 
-        public HolidayRequestComposer(HolidayRequest request)
+        public HolidayRequestComposer(HolidayRequest request, IHolidayRequestComposerConfig config)
         {
             _request = request;
-            
+            _config = config;
+
             ValidateRequest();
         }
 
@@ -31,6 +33,74 @@ namespace SendingEmails
             {
                 throw new ArgumentException("The \"To\" time interval must be set to a more recent date than the \"From\" time interval");
             }
+        }
+
+        public MailMessage ComposeByStatus(RequestStatus status)
+        {
+            if(status == RequestStatus.Requested)
+            {
+                return ComposeRequested();
+            }
+
+            return status == RequestStatus.Rejected ? ComposeRejected() : ComposeApproved();
+        }
+
+        private MailMessage ComposeRequested()
+        {
+            var mail = new MailMessage(_request.Requester.GetEmployeeEmail(), _request.Manager.GetEmployeeEmail())
+                           {
+                               Subject = "Holiday Request",
+                               IsBodyHtml = false,
+                               Body = "Hi, " +
+                                      "\n" +
+                                      "\n" +
+                                      "Please approve my holiday request starting from " +
+                                      _request.TimeInterval.From.ToShortDateString() +
+                                      "until " +
+                                      _request.TimeInterval.From.ToShortDateString() +
+                                      "\n" +
+                                      "\n" +
+                                      "Thank you!"
+                           };
+
+            return mail;
+        }
+
+        private MailMessage ComposeRejected()
+        {
+            var mail = new MailMessage(_request.Manager.GetEmployeeEmail(), _request.Requester.GetEmployeeEmail())
+                           {
+                               Subject = "[Rejected] Holiday Request",
+                               IsBodyHtml = false,
+                               Body = "Hi, " +
+                                      "\n" +
+                                      "\n" +
+                                      "Your request was rejected!" +
+                                      "\n" +
+                                      "\n" +
+                                      "Thank you!"
+                           };
+
+            return mail;
+        }
+
+        private MailMessage ComposeApproved()
+        {
+            var mail = new MailMessage(_request.Manager.GetEmployeeEmail(), new MailAddress(_config.HrMail))
+                           {
+                               Subject = "[Approved] Holiday Request",
+                               IsBodyHtml = false,
+                               Body = "Hi, " +
+                                      "\n" +
+                                      "\n" +
+                                      "Your request was approved! " +
+                                      "\n" +
+                                      "\n" +
+                                      "Thank you!",
+                           };
+            mail.CC.Add(_request.Requester.GetEmployeeEmail());            
+
+            return mail;
         }
     }
 }

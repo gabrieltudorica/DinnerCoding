@@ -46,8 +46,11 @@
     <Compile Include="EmployeeConfiguration.cs" />
     <Compile Include="HolidayRequest.cs" />
     <Compile Include="HolidayRequestComposer.cs" />
+    <Compile Include="HolidayRequestComposerConfiguration.cs" />
     <Compile Include="IEmployeeConfiguration.cs" />
+    <Compile Include="IHolidayRequestConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestStatus.cs" />
     <Compile Include="TimeInterval.cs" />
   </ItemGroup>
   <ItemGroup>
