@@ -1,24 +1,25 @@
 ﻿using System;
+using System.Net.Mail;
 
 namespace SendingEmails
 {
     public class HolidayRequest
     {
-        public string EmployeeName { get; private set; }    
-        private string _employeeEmail;
-        private string _managerEmail;
+        public string EmployeeName { get; private set; }
+        public MailAddress EmployeeEmail { get; private set; }
+        public MailAddress ManagerEmail { get; private set; }
 
-        private DateTime _from;
-        private DateTime _to;
+        public DateTime From { get; private set; }
+        public DateTime To { get; private set; }
 
-        public HolidayRequest(string employeeName, string employeeEmail, string managerEmail, DateTime from, DateTime to)
+        public HolidayRequest(string employeeName, MailAddress employeeEmail, MailAddress managerEmail, DateTime from, DateTime to)
         {
             EmployeeName = employeeName;
-            _employeeEmail = employeeEmail;
-            _managerEmail = managerEmail;
+            EmployeeEmail = employeeEmail;
+            ManagerEmail = managerEmail;
 
-            _from = from;
-            _to = to;
+            From = from;
+            To = to;
         }
     }
 }

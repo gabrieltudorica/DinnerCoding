@@ -23,6 +23,11 @@ namespace SendingEmails
             {
                 throw  new ArgumentException();
             }
+
+            if(_request.From == DateTime.MinValue || _request.To == DateTime.MinValue)
+            {
+                throw new ArgumentException();
+            }
         }
     }
 }
