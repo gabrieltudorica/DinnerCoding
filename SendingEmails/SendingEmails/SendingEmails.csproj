@@ -46,7 +46,7 @@
     <Compile Include="Employee\EmployeeConfig.cs" />
     <Compile Include="HolidayRequest.cs" />
     <Compile Include="Composer\Composer.cs" />
-    <Compile Include="Composer\ComposerConfiguration.cs" />
+    <Compile Include="Composer\ComposerConfig.cs" />
     <Compile Include="Employee\IEmployeeConfig.cs" />
     <Compile Include="Composer\IComposerConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
