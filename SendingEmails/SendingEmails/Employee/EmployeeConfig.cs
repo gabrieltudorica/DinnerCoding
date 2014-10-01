@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
 
-namespace SendingEmails
+namespace SendingEmails.Employee
 {
-    public class EmployeeConfiguration : IEmployeeConfiguration
+    public class EmployeeConfig : IEmployeeConfig
     {
         public string CompanyHost
         {

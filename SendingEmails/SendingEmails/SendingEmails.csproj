@@ -40,18 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailSender.cs" />
-    <Compile Include="EmailSenderConfiguration.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeConfiguration.cs" />
+    <Compile Include="Sender\EmailSender.cs" />
+    <Compile Include="Sender\EmailSenderConfig.cs" />
+    <Compile Include="Employee\Employee.cs" />
+    <Compile Include="Employee\EmployeeConfig.cs" />
     <Compile Include="HolidayRequest.cs" />
-    <Compile Include="HolidayRequestComposer.cs" />
-    <Compile Include="HolidayRequestComposerConfiguration.cs" />
-    <Compile Include="IEmployeeConfiguration.cs" />
-    <Compile Include="IHolidayRequestConfig.cs" />
+    <Compile Include="Composer\Composer.cs" />
+    <Compile Include="Composer\ComposerConfiguration.cs" />
+    <Compile Include="Employee\IEmployeeConfig.cs" />
+    <Compile Include="Composer\IComposerConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestStatus.cs" />
-    <Compile Include="TimeInterval.cs" />
+    <Compile Include="Employee\TimeInterval.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,13 +1,15 @@
-﻿namespace SendingEmails
+﻿using SendingEmails.Employee;
+
+namespace SendingEmails
 {
     public class HolidayRequest
     {
-        public Employee Requester { get; private set; }
-        public Employee Manager { get; private set; }
+        public Employee.Employee Requester { get; private set; }
+        public Employee.Employee Manager { get; private set; }
 
         public TimeInterval TimeInterval { get; private set; }
 
-        public HolidayRequest(Employee requester, Employee manager, TimeInterval timeInterval)
+        public HolidayRequest(Employee.Employee requester, Employee.Employee manager, TimeInterval timeInterval)
         {
             Requester = requester;
             Manager = manager;

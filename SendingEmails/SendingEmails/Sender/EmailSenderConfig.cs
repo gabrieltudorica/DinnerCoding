@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
 
-namespace SendingEmails
+namespace SendingEmails.Sender
 {
-    public class EmailSenderConfiguration
+    public class EmailSenderConfig
     {
         public string SmtpHost
         {

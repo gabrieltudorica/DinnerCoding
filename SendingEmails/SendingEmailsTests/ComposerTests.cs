@@ -3,17 +3,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SendingEmails;
 using System;
+using SendingEmails.Composer;
+using SendingEmails.Employee;
 
 namespace SendingEmailsTests
 {
     [TestClass]
-    public class HolidayRequestComposerTests
+    public class ComposerTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullRequest_ThrowsException()
         {
-            new HolidayRequestComposer(null, GetConfig());
+            new Composer(null, GetConfig());
         }
 
         [TestMethod]
@@ -23,7 +25,7 @@ namespace SendingEmailsTests
             var employee = GetEmployee("firstName", "lastName");
             
             var request = new HolidayRequest(employee, employee, new TimeInterval());
-            new HolidayRequestComposer(request, GetConfig());
+            new Composer(request, GetConfig());
         }
 
         [TestMethod]
@@ -34,7 +36,7 @@ namespace SendingEmailsTests
             var employee = GetEmployee("firstName", "lastName");            
 
             var request = new HolidayRequest(employee, employee, new TimeInterval{From = now, To = now});
-            new HolidayRequestComposer(request, GetConfig());
+            new Composer(request, GetConfig());
         }
 
         [TestMethod]
@@ -45,7 +47,7 @@ namespace SendingEmailsTests
             var employee = GetEmployee("firstName", "lastName");
 
             var request = new HolidayRequest(employee, employee, new TimeInterval { From = now, To = now.AddDays(-1) });
-            new HolidayRequestComposer(request, GetConfig());
+            new Composer(request, GetConfig());
         }
 
         [TestMethod]
@@ -56,7 +58,7 @@ namespace SendingEmailsTests
             var manager = GetEmployee("Sherlock", "Holmes");
 
             var request = new HolidayRequest(requester, manager , new TimeInterval { From = now.AddDays(1), To = now.AddDays(8) });
-            var composer = new HolidayRequestComposer(request, GetConfig());
+            var composer = new Composer(request, GetConfig());
             MailMessage mail = composer.ComposeByStatus(RequestStatus.Requested);
 
             Assert.IsTrue(mail.Subject.StartsWith("Holiday Request"));
@@ -72,7 +74,7 @@ namespace SendingEmailsTests
             var manager = GetEmployee("Sherlock", "Holmes");
 
             var request = new HolidayRequest(requester, manager, new TimeInterval { From = now.AddDays(1), To = now.AddDays(8) });
-            var composer = new HolidayRequestComposer(request, GetConfig());
+            var composer = new Composer(request, GetConfig());
             MailMessage mail = composer.ComposeByStatus(RequestStatus.Rejected);
 
             Assert.IsTrue(mail.Subject.StartsWith("[Rejected]"));
@@ -88,7 +90,7 @@ namespace SendingEmailsTests
             var manager = GetEmployee("Sherlock", "Holmes");
 
             var request = new HolidayRequest(requester, manager, new TimeInterval { From = now.AddDays(1), To = now.AddDays(8) });
-            var composer = new HolidayRequestComposer(request, GetConfig());
+            var composer = new Composer(request, GetConfig());
             MailMessage mail = composer.ComposeByStatus(RequestStatus.Approved);
 
             Assert.IsTrue(mail.Subject.StartsWith("[Approved]"));
@@ -97,9 +99,9 @@ namespace SendingEmailsTests
             Assert.AreEqual(mail.CC[0].Address, requester.GetEmployeeEmail().Address);
         }
 
-        private IHolidayRequestComposerConfig GetConfig()
+        private IComposerConfig GetConfig()
         {
-            var composerConfig = new Mock<IHolidayRequestComposerConfig>();
+            var composerConfig = new Mock<IComposerConfig>();
             composerConfig.Setup(m => m.HrMail).Returns("hr@dummyHost.com");
 
             return composerConfig.Object;
@@ -107,7 +109,7 @@ namespace SendingEmailsTests
 
         private Employee GetEmployee(string firstName, string lastName)
         {
-            var employeeConfigMock = new Mock<IEmployeeConfiguration>();
+            var employeeConfigMock = new Mock<IEmployeeConfig>();
             employeeConfigMock.Setup(m => m.CompanyHost).Returns("someHost.com");
 
             return new Employee(firstName, lastName, employeeConfigMock.Object);

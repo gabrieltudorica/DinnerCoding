@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Net.Mail;
 
-namespace SendingEmails
+namespace SendingEmails.Employee
 {
     public class Employee
     {
         private readonly string _firstName;
         private readonly string _lastName;
-        private readonly IEmployeeConfiguration _config;
+        private readonly IEmployeeConfig _config;
 
-        public Employee(string firstName, string lastName, IEmployeeConfiguration config)
+        public Employee(string firstName, string lastName, IEmployeeConfig config)
         {
             _firstName = firstName;
             _lastName = lastName;

@@ -1,14 +1,14 @@
 ﻿using System.Net;
 using System.Net.Mail;
 
-namespace SendingEmails
+namespace SendingEmails.Sender
 {
     public class EmailSender
     {
         private readonly MailMessage _mail;
-        private readonly EmailSenderConfiguration _config;
+        private readonly EmailSenderConfig _config;
 
-        public EmailSender(EmailSenderConfiguration config, MailMessage mail)
+        public EmailSender(EmailSenderConfig config, MailMessage mail)
         {
             _mail = mail;
             _config = config;

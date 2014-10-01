@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SendingEmails;
+using SendingEmails.Employee;
 
 namespace SendingEmailsTests
 {
@@ -35,7 +36,7 @@ namespace SendingEmailsTests
         [TestMethod]
         public void EmployeeEmail_ComputedCorrectly()
         {
-            IEmployeeConfiguration configMock = GetConfigurationMock();
+            IEmployeeConfig configMock = GetConfigurationMock();
 
             var employee = new Employee(FirstName, LastName, configMock);
             string expectedMail = FirstName + "." + LastName + "@" + configMock.CompanyHost; 
@@ -43,9 +44,9 @@ namespace SendingEmailsTests
             Assert.AreEqual(employee.GetEmployeeEmail().Address, expectedMail);
         }
 
-        private IEmployeeConfiguration GetConfigurationMock()
+        private IEmployeeConfig GetConfigurationMock()
         {
-            var employeeConfigMock = new Mock<IEmployeeConfiguration>();
+            var employeeConfigMock = new Mock<IEmployeeConfig>();
             employeeConfigMock.Setup(m => m.CompanyHost).Returns("dummyHost.com");
 
             return employeeConfigMock.Object;

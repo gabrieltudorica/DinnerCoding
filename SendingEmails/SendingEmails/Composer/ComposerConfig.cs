@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
 
-namespace SendingEmails
+namespace SendingEmails.Composer
 {
-    public class HolidayRequestComposerConfiguration
+    public class ComposerConfig : IComposerConfig
     {
         public string HrMail
         {

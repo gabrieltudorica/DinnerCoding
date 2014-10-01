@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Net.Mail;
 
-namespace SendingEmails
+namespace SendingEmails.Composer
 {
-    public class HolidayRequestComposer
+    public class Composer
     {
         private readonly HolidayRequest _request;
-        private readonly IHolidayRequestComposerConfig _config;
+        private readonly IComposerConfig _config;
 
-        public HolidayRequestComposer(HolidayRequest request, IHolidayRequestComposerConfig config)
+        public Composer(HolidayRequest request, IComposerConfig config)
         {
             _request = request;
             _config = config;
