@@ -14,7 +14,7 @@ namespace SendingEmails
             _config = config;
         }
 
-        public void Send(string subject, string body)
+        public void Send()
         {            
             using (var smtp = new SmtpClient())
             {
