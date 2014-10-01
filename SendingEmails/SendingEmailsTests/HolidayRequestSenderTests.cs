@@ -6,7 +6,7 @@ using System;
 namespace SendingEmailsTests
 {
     [TestClass]
-    public class HolidayRequestEmailTests
+    public class HolidayRequestSenderTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
