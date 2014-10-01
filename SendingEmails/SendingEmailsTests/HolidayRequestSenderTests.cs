@@ -12,7 +12,7 @@ namespace SendingEmailsTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullRequest_ThrowsException()
         {
-            var requestSender = new HolidayRequestSender(null);
+            new HolidayRequestSender(null);
         }
 
         [TestMethod]
@@ -25,7 +25,7 @@ namespace SendingEmailsTests
             var employee = new Employee("firstName", "lastName", employeeConfigMock.Object);
             
             var request = new HolidayRequest(employee, employee, new TimeInterval());
-            var requestSender = new HolidayRequestSender(request);
+            new HolidayRequestSender(request);
         }
     }
 }
