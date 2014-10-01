@@ -15,14 +15,14 @@ namespace SendingEmailsTests
         [ExpectedException(typeof(ArgumentException))]
         public void EmptyStringFirstName_ThrowsException()
         {
-            var employee = new Employee(string.Empty, LastName, GetConfigurationMock());
+            new Employee(string.Empty, LastName, GetConfigurationMock());
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void EmptyStringLastName_ThrowsException()
         {
-            var employee = new Employee(FirstName, string.Empty, GetConfigurationMock());
+            new Employee(FirstName, string.Empty, GetConfigurationMock());
         }
 
         [TestMethod]
