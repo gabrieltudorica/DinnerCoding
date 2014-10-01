@@ -6,13 +6,13 @@ using System;
 namespace SendingEmailsTests
 {
     [TestClass]
-    public class HolidayRequestSenderTests
+    public class HolidayRequestComposerTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullRequest_ThrowsException()
         {
-            new HolidayRequestSender(null);
+            new HolidayRequestComposer(null);
         }
 
         [TestMethod]
@@ -22,7 +22,7 @@ namespace SendingEmailsTests
             var employee = GetEmployee();
             
             var request = new HolidayRequest(employee, employee, new TimeInterval());
-            new HolidayRequestSender(request);
+            new HolidayRequestComposer(request);
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace SendingEmailsTests
             var employee = GetEmployee();            
 
             var request = new HolidayRequest(employee, employee, new TimeInterval{From = now, To = now});
-            new HolidayRequestSender(request);
+            new HolidayRequestComposer(request);
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace SendingEmailsTests
             var employee = GetEmployee();
 
             var request = new HolidayRequest(employee, employee, new TimeInterval { From = now, To = now.AddDays(-1) });
-            new HolidayRequestSender(request);
+            new HolidayRequestComposer(request);
         }
 
         [TestMethod]

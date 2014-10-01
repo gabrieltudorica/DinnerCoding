@@ -3,11 +3,11 @@ using System.Net.Mail;
 
 namespace SendingEmails
 {
-    public class HolidayRequestSender
+    public class HolidayRequestComposer
     {
         private readonly HolidayRequest _request;
 
-        public HolidayRequestSender(HolidayRequest request)
+        public HolidayRequestComposer(HolidayRequest request)
         {
             _request = request;
             
