@@ -15,7 +15,7 @@ namespace Usage
             var requester = new Employee("John", "Watson", employeeConfig);
             var manager = new Employee("Sherlock", "Holmes", employeeConfig);
 
-            var request = new HolidayRequest(requester, manager, OneWeekHolidayFromTomorrow());
+            var request = new HolidayRequest(requester, manager, OneWeekHolidayStartingTomorrow());
             var composer = new Composer(request, new ComposerConfig());
 
             SendMail(composer.ComposeByStatus(RequestStatus.Approved));
@@ -23,7 +23,7 @@ namespace Usage
             SendMail(composer.ComposeByStatus(RequestStatus.Requested));                      
         }     
 
-        private static TimeInterval OneWeekHolidayFromTomorrow()
+        private static TimeInterval OneWeekHolidayStartingTomorrow()
         {
             var now = DateTime.Now;
             return new TimeInterval { From = now.AddDays(1), To = now.AddDays(8) };
