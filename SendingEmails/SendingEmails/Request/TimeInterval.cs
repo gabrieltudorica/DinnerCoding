@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SendingEmails.Employee
+namespace SendingEmails.Request
 {
     public class TimeInterval
     {

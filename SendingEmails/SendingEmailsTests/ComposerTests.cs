@@ -1,10 +1,10 @@
-﻿using System.Net.Mail;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using SendingEmails;
-using System;
 using SendingEmails.Composer;
 using SendingEmails.Employee;
+using SendingEmails.Request;
+using System;
+using System.Net.Mail;
 
 namespace SendingEmailsTests
 {

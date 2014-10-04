@@ -1,4 +1,4 @@
-﻿namespace SendingEmails
+﻿namespace SendingEmails.Request
 {
     public enum RequestStatus
     {

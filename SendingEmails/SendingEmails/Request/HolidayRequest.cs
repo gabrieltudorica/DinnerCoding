@@ -1,6 +1,4 @@
-﻿using SendingEmails.Employee;
-
-namespace SendingEmails
+﻿namespace SendingEmails.Request
 {
     public class HolidayRequest
     {

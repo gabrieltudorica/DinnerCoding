@@ -44,17 +44,14 @@
     <Compile Include="Sender\EmailSenderConfig.cs" />
     <Compile Include="Employee\Employee.cs" />
     <Compile Include="Employee\EmployeeConfig.cs" />
-    <Compile Include="HolidayRequest.cs" />
+    <Compile Include="Request\HolidayRequest.cs" />
     <Compile Include="Composer\Composer.cs" />
     <Compile Include="Composer\ComposerConfig.cs" />
     <Compile Include="Employee\IEmployeeConfig.cs" />
     <Compile Include="Composer\IComposerConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestStatus.cs" />
-    <Compile Include="Employee\TimeInterval.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="Request\RequestStatus.cs" />
+    <Compile Include="Request\TimeInterval.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
