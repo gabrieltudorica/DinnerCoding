@@ -13,8 +13,9 @@ namespace Usage
         {
             Employee requester = GetEmployee("John", "Watson");
             Employee manager = GetEmployee("Sherlock", "Holmes");
-                        
-            Composer composer = GetComposer(requester, manager);
+
+            var request = new HolidayRequest(requester, manager, OneWeekHolidayFromTomorrow());
+            var composer = new Composer(request, new ComposerConfig());
 
             SendMail(composer.ComposeByStatus(RequestStatus.Approved));
             SendMail(composer.ComposeByStatus(RequestStatus.Rejected));
@@ -26,12 +27,6 @@ namespace Usage
             var employeeConfig = new EmployeeConfig();
             return new Employee(firstName, lastName, employeeConfig);
         }       
-
-        private static Composer GetComposer(Employee requester, Employee manager)
-        {
-            var request = new HolidayRequest(requester, manager, OneWeekHolidayFromTomorrow());
-            return new Composer(request, new ComposerConfig());
-        }
 
         private static TimeInterval OneWeekHolidayFromTomorrow()
         {
