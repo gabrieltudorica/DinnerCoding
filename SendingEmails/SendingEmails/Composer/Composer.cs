@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Mail;
+using SendingEmails.Request;
 
 namespace SendingEmails.Composer
 {
@@ -57,7 +58,7 @@ namespace SendingEmails.Composer
                                       "Please approve my holiday request starting from " +
                                       _request.TimeInterval.From.ToShortDateString() +
                                       "until " +
-                                      _request.TimeInterval.From.ToShortDateString() +
+                                      _request.TimeInterval.To.ToShortDateString() +
                                       "\n" +
                                       "\n" +
                                       "Thank you!"
