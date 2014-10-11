@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using System.Configuration;
+using System.Net.Mail;
 
 namespace HolidayRequestSender
 {
@@ -17,12 +18,71 @@ namespace HolidayRequestSender
 
         public MailMessage Create(EmailContentType mailType)
         {
+            if (mailType == EmailContentType.Request)
+            {
+                return CreateRequestMail();
+            }
+
+            return mailType == EmailContentType.Approval ? 
+                                CreateApprovalMail() : 
+                                CreateRejectionMail();
+        }
+
+        private MailMessage CreateRequestMail()
+        {
             return new MailMessage(_employee.GetEmail(), _manager.GetEmail())
             {
                 Subject = "Holiday Request",
-                Body = string.Format("Please approve my holiday request from {0} to {1}",
-                    _holidayInterval.GetStartDate().ToShortDateString(), 
-                    _holidayInterval.GetEndDate().ToShortDateString()) 
+                Body = "Hi " + _manager.GetFirstName() + "," +
+                        "\n\n" +
+                        "Please approve my holiday request starting from " +
+                        _holidayInterval.GetStartDate().ToShortDateString() +
+                        "until " +
+                        _holidayInterval.GetEndDate().ToShortDateString() +
+                        "\n\n" +
+                        "Thank you!"                    
+            };
+        }
+
+        private MailMessage CreateApprovalMail()
+        {
+            var hrMail = new MailAddress(
+                string.Format("{0}@{1}",
+                    ConfigurationManager.AppSettings["hrMail"],
+                    ConfigurationManager.AppSettings["companyHost"]));
+
+            var approvalMail = new MailMessage(_manager.GetEmail(), hrMail)
+            {
+                Subject = "[Approved] Holiday Request",
+                Body = "Hi, " + 
+                        "\n\n" +
+                        _employee.GetFirstName() + "'s holiday holiday request starting from " +
+                        _holidayInterval.GetStartDate().ToShortDateString() +
+                        "until " +
+                        _holidayInterval.GetEndDate().ToShortDateString() +
+                        " has been approved." +
+                        "\n\n" +
+                        "Thank you!"
+            };
+
+            approvalMail.CC.Add(_employee.GetEmail());
+            return approvalMail;
+        }
+
+        private MailMessage CreateRejectionMail()
+        {
+            return new MailMessage(_manager.GetEmail(), _employee.GetEmail())
+            {
+                Subject = "[Rejected] Holiday Request",
+                Body = "Hi " + _employee.GetFirstName() + "," +
+                        "\n\n" +
+                        "Unfortunately, your holiday request starting from " +
+                        _holidayInterval.GetStartDate().ToShortDateString() +
+                        "until " +
+                        _holidayInterval.GetEndDate().ToShortDateString() +
+                        "cannot be approved during this timeframe." + 
+                        "\n\n" +
+                        "Thank you!"
             };
         }
     }
