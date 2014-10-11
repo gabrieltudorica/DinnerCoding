@@ -1,21 +1,16 @@
-﻿using System;
-
-namespace HolidayRequestSender
+﻿namespace HolidayRequestSender
 {
     public class HolidayApplication
     {
         private Employee _employee;
         private Employee _manager;
-        private DateTime _from;
-        private DateTime _to;
+        private HolidayInterval _holidayInterval;
 
-
-        public HolidayApplication(Employee employee, Employee manager, DateTime from, DateTime to)
+        public HolidayApplication(Employee employee, Employee manager, HolidayInterval holidayInterval)
         {
             _employee = employee;
             _manager = manager;
-            _from = from;
-            _to = to;
+            _holidayInterval = holidayInterval;
         }
 
         public void Request()
