@@ -4,18 +4,16 @@ namespace HolidayRequestSender
 {
     public class HolidayApplication
     {
-        private string _employeeFullName;
-        private string _employeeEmail;
-        private string _managerEmail;
+        private Employee _employee;
+        private Employee _manager;
         private DateTime _from;
         private DateTime _to;
 
 
-        public HolidayApplication(string employeeFullName, string employeeEmail, string managerEmail, DateTime from, DateTime to)
+        public HolidayApplication(Employee employee, Employee manager, DateTime from, DateTime to)
         {
-            _employeeFullName = employeeFullName;
-            _employeeEmail = employeeEmail;
-            _managerEmail = managerEmail;
+            _employee = employee;
+            _manager = manager;
             _from = from;
             _to = to;
         }
