@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 
 namespace HolidayRequestSender
 {
@@ -25,6 +26,12 @@ namespace HolidayRequestSender
         public string GetFullName()
         {
             return _firstName + " " + _lastName;
+        }
+
+        public string GetEmail()
+        {
+            return string.Format("{0}.{1}@{2}", _firstName.ToLower(), _lastName.ToLower(),
+                ConfigurationManager.AppSettings["companyHost"].ToLower());
         }
     }
 }
