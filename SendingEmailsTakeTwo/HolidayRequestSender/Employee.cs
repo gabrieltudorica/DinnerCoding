@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Net.Mail;
 
 namespace HolidayRequestSender
 {
@@ -28,10 +29,12 @@ namespace HolidayRequestSender
             return _firstName + " " + _lastName;
         }
 
-        public string GetEmail()
+        public MailAddress GetEmail()
         {
-            return string.Format("{0}.{1}@{2}", _firstName.ToLower(), _lastName.ToLower(),
-                ConfigurationManager.AppSettings["companyHost"].ToLower());
+            return new MailAddress(string.Format("{0}.{1}@{2}", 
+                _firstName.ToLower(), 
+                _lastName.ToLower(),
+                ConfigurationManager.AppSettings["companyHost"].ToLower()));
         }
     }
 }

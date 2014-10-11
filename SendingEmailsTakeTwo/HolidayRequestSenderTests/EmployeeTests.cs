@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mail;
 using HolidayRequestSender;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -25,7 +26,7 @@ namespace HolidayRequestSenderTests
         public void GetEmail_WhenParamsAreValid_ReturnsFirstDotLastNameAtCompanyHost()
         {
             var employee = new Employee("Nucky", "Thompson");
-            Assert.AreEqual("nucky.thompson@company.com", employee.GetEmail());
+            Assert.AreEqual(new MailAddress("nucky.thompson@company.com"), employee.GetEmail());
         }
     }
 }
