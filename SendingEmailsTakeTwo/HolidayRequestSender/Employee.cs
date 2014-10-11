@@ -36,5 +36,10 @@ namespace HolidayRequestSender
                 _lastName.ToLower(),
                 ConfigurationManager.AppSettings["companyHost"].ToLower()));
         }
+
+        public string GetFirstName()
+        {
+            return _firstName;
+        }
     }
 }
