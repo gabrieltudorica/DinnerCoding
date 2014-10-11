@@ -46,13 +46,7 @@ namespace HolidayRequestSender
 
         private MailMessage CreateApprovalMail()
         {
-            var hrMail = new MailAddress(
-                string.Format("{0}@{1}",
-                    ConfigurationManager.AppSettings["hrMail"],
-                    ConfigurationManager.AppSettings["companyHost"]), 
-                    ConfigurationManager.AppSettings["hrMail"]);
-
-            var approvalMail = new MailMessage(_manager.GetEmail(), hrMail)
+            var approvalMail = new MailMessage(_manager.GetEmail(), GetHrEmail())
             {
                 Subject = "[Approved] Holiday Request",
                 Body = "Hi, " + 
@@ -67,6 +61,7 @@ namespace HolidayRequestSender
             };
 
             approvalMail.CC.Add(_employee.GetEmail());
+            
             return approvalMail;
         }
 
@@ -85,6 +80,15 @@ namespace HolidayRequestSender
                         "\n\n" +
                         "Thank you!"
             };
+        }
+
+        private MailAddress GetHrEmail()
+        {
+            return new MailAddress(
+                string.Format("{0}@{1}",
+                    ConfigurationManager.AppSettings["hrMail"],
+                    ConfigurationManager.AppSettings["companyHost"]),
+                ConfigurationManager.AppSettings["hrMail"]);
         }
     }
 }

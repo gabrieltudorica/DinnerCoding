@@ -51,7 +51,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="EmailProvider.cs" />
     <Compile Include="EmployeeTests.cs" />
     <Compile Include="HolidayApplicationTests.cs" />
     <Compile Include="HolidayIntervalTests.cs" />

@@ -24,6 +24,11 @@ namespace HolidayRequestSender
             }
         }
 
+        public string GetFirstName()
+        {
+            return _firstName;
+        }
+
         public string GetFullName()
         {
             return _firstName + " " + _lastName;
@@ -31,16 +36,11 @@ namespace HolidayRequestSender
 
         public MailAddress GetEmail()
         {
-            return new MailAddress(string.Format("{0}.{1}@{2}", 
-                _firstName.ToLower(), 
+            return new MailAddress(string.Format("{0}.{1}@{2}",
+                _firstName.ToLower(),
                 _lastName.ToLower(),
                 ConfigurationManager.AppSettings["companyHost"].ToLower()),
                 GetFullName());
-        }
-
-        public string GetFirstName()
-        {
-            return _firstName;
         }
     }
 }
