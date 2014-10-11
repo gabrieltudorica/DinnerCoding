@@ -17,15 +17,13 @@ namespace HolidayRequestSender
 
         public MailMessage Create(EmailContentType mailType)
         {
-            var mail = new MailMessage(_employee.GetEmail(), _manager.GetEmail())
+            return new MailMessage(_employee.GetEmail(), _manager.GetEmail())
             {
                 Subject = "Holiday Request",
                 Body = string.Format("Please approve my holiday request from {0} to {1}",
                     _holidayInterval.GetStartDate().ToShortDateString(), 
                     _holidayInterval.GetEndDate().ToShortDateString()) 
             };
-
-            return mail;
         }
     }
 }
