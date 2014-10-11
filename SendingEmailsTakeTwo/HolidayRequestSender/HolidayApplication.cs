@@ -1,10 +1,12 @@
-﻿namespace HolidayRequestSender
+﻿using System.Net.Mail;
+
+namespace HolidayRequestSender
 {
     public class HolidayApplication
     {
-        private Employee _employee;
-        private Employee _manager;
-        private HolidayInterval _holidayInterval;
+        private readonly Employee _employee;
+        private readonly Employee _manager;
+        private readonly HolidayInterval _holidayInterval;
 
         public HolidayApplication(Employee employee, Employee manager, HolidayInterval holidayInterval)
         {
@@ -13,9 +15,17 @@
             _holidayInterval = holidayInterval;
         }
 
-        public void Request()
+        public MailMessage Create(EmailContentType mailType)
         {
+            var mail = new MailMessage(_employee.GetEmail(), _manager.GetEmail())
+            {
+                Subject = "Holiday Request",
+                Body = string.Format("Please approve my holiday request from {0} to {1}",
+                    _holidayInterval.GetStartDate().ToShortDateString(), 
+                    _holidayInterval.GetEndDate().ToShortDateString()) 
+            };
 
+            return mail;
         }
     }
 }
