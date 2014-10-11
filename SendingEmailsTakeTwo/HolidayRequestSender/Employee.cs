@@ -34,7 +34,8 @@ namespace HolidayRequestSender
             return new MailAddress(string.Format("{0}.{1}@{2}", 
                 _firstName.ToLower(), 
                 _lastName.ToLower(),
-                ConfigurationManager.AppSettings["companyHost"].ToLower()));
+                ConfigurationManager.AppSettings["companyHost"].ToLower()),
+                GetFullName());
         }
 
         public string GetFirstName()

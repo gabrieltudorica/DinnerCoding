@@ -1,13 +1,14 @@
-﻿using System;
-using System.Net.Mail;
-using HolidayRequestSender;
+﻿using HolidayRequestSender;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace HolidayRequestSenderTests
 {
     [TestClass]
     public class EmployeeTests
     {
+        private const string FirstName = "Nucky";
+        private const string LastName = "Thompson";
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Constructor_WhenPassingEmptyStringParameters_ThrowsException()
@@ -17,16 +18,22 @@ namespace HolidayRequestSenderTests
 
         [TestMethod]
         public void GetFullName_WhenParamsAreValid_ReturnsFirstAndLastName()
-        {
-            var employee = new Employee("Nucky", "Thompson");
-            Assert.AreEqual("Nucky Thompson", employee.GetFullName());
+        {            
+            Assert.AreEqual(FirstName + " " + LastName, GetEmployee().GetFullName());
         }
 
         [TestMethod]
         public void GetEmail_WhenParamsAreValid_ReturnsFirstDotLastNameAtCompanyHost()
         {
-            var employee = new Employee("Nucky", "Thompson");
-            Assert.AreEqual(new MailAddress("nucky.thompson@company.com"), employee.GetEmail());
+            var employee = GetEmployee();
+            var expectedMailAddress = EmailProvider.GetCompanyEmployeeEmail(FirstName, LastName);
+
+            Assert.AreEqual(expectedMailAddress, employee.GetEmail());
+        }
+
+        private static Employee GetEmployee()
+        {
+            return new Employee(FirstName, LastName);
         }
     }
 }

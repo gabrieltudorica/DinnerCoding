@@ -42,10 +42,7 @@ namespace HolidayRequestSenderTests
             Assert.IsTrue(requestMail.Subject.StartsWith("[approved]", 
                 StringComparison.InvariantCultureIgnoreCase));
 
-            var hrMail = new MailAddress(
-                string.Format("{0}@{1}",
-                    ConfigurationManager.AppSettings["hrMail"],
-                    ConfigurationManager.AppSettings["companyHost"]));
+            var hrMail = EmailProvider.GetCompanyGenericEmail(ConfigurationManager.AppSettings["hrMail"]);
             Assert.AreEqual(hrMail, requestMail.To);
         }
 

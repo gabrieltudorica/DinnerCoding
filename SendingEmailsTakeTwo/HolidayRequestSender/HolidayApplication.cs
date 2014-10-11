@@ -49,7 +49,8 @@ namespace HolidayRequestSender
             var hrMail = new MailAddress(
                 string.Format("{0}@{1}",
                     ConfigurationManager.AppSettings["hrMail"],
-                    ConfigurationManager.AppSettings["companyHost"]));
+                    ConfigurationManager.AppSettings["companyHost"]), 
+                    ConfigurationManager.AppSettings["hrMail"]);
 
             var approvalMail = new MailMessage(_manager.GetEmail(), hrMail)
             {
