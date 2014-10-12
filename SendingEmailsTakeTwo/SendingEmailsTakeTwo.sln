@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolidayRequestSender", "Hol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolidayRequestSenderTests", "HolidayRequestSenderTests\HolidayRequestSenderTests.csproj", "{E633E00F-08D1-4864-BC5A-CB1AE1DE58D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Usage", "Usage\Usage.csproj", "{FF34EB72-08BF-45AD-A7FA-186322BDD2A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{E633E00F-08D1-4864-BC5A-CB1AE1DE58D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E633E00F-08D1-4864-BC5A-CB1AE1DE58D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E633E00F-08D1-4864-BC5A-CB1AE1DE58D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF34EB72-08BF-45AD-A7FA-186322BDD2A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF34EB72-08BF-45AD-A7FA-186322BDD2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF34EB72-08BF-45AD-A7FA-186322BDD2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF34EB72-08BF-45AD-A7FA-186322BDD2A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
