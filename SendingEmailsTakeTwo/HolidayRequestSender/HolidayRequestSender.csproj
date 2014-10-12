@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailContentType.cs" />
+    <Compile Include="EmailSender.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="HolidayApplication.cs" />
     <Compile Include="HolidayInterval.cs" />
