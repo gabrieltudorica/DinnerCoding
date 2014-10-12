@@ -37,7 +37,7 @@ namespace HolidayRequestSender
                         "\n\n" +
                         "Please approve my holiday request starting from " +
                         _holidayInterval.GetStartDate().ToShortDateString() +
-                        "until " +
+                        " until " +
                         _holidayInterval.GetEndDate().ToShortDateString() +
                         "\n\n" +
                         "Thank you!"                    
@@ -53,7 +53,7 @@ namespace HolidayRequestSender
                         "\n\n" +
                         _employee.GetFirstName() + "'s holiday holiday request starting from " +
                         _holidayInterval.GetStartDate().ToShortDateString() +
-                        "until " +
+                        " until " +
                         _holidayInterval.GetEndDate().ToShortDateString() +
                         " has been approved." +
                         "\n\n" +
@@ -74,9 +74,9 @@ namespace HolidayRequestSender
                         "\n\n" +
                         "Unfortunately, your holiday request starting from " +
                         _holidayInterval.GetStartDate().ToShortDateString() +
-                        "until " +
+                        " until " +
                         _holidayInterval.GetEndDate().ToShortDateString() +
-                        "cannot be approved during this timeframe." + 
+                        " cannot be approved during this timeframe." + 
                         "\n\n" +
                         "Thank you!"
             };
