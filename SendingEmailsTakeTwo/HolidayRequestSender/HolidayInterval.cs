@@ -19,7 +19,8 @@ namespace HolidayRequestSender
         {
             if ((_from == DateTime.MinValue) || (_to == DateTime.MinValue) || _from > _to)
             {
-                throw new ArgumentException("From and To time intervals cannot have the default (min) value");
+                throw new ArgumentException("From and To time intervals cannot have the default (min) value. " +
+                                            "From date must also be more recent than the To date.");
             }
         }
 

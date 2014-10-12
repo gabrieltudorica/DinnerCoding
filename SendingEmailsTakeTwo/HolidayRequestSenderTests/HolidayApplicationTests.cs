@@ -12,15 +12,14 @@ namespace HolidayRequestSenderTests
     {
         private readonly Employee _requester = new Employee("James", "Darmody");
         private readonly Employee _manager = new Employee("Nucky", "Thompson");
+        private readonly HolidayInterval _oneWeekHolidayStartingTomorrow = 
+            new HolidayInterval(DateTime.Now.AddDays(1), DateTime.Now.AddDays(8));
 
         [TestMethod]
         public void Create_WhenPassingRequestType_ReturnsRequestMail()
-        {
-            var holidayInterval = new HolidayInterval(
-                DateTime.Now.AddDays(1), DateTime.Now.AddDays(8));
-
+        {            
             var holidayApplication = new HolidayApplication(
-                _requester, _manager, holidayInterval);
+                _requester, _manager, _oneWeekHolidayStartingTomorrow);
             MailMessage requestMail = holidayApplication.Create(EmailContentType.Request);
 
             Assert.AreEqual(_requester.GetEmail(), requestMail.From);
@@ -31,11 +30,8 @@ namespace HolidayRequestSenderTests
         [TestMethod]
         public void Create_WhenPassingApprovedType_ReturnsApprovedMail()
         {
-            var holidayInterval = new HolidayInterval(
-                DateTime.Now.AddDays(1), DateTime.Now.AddDays(8));
-
             var holidayApplication = new HolidayApplication(
-                _requester, _manager, holidayInterval);
+                _requester, _manager, _oneWeekHolidayStartingTomorrow);
             MailMessage requestMail = holidayApplication.Create(EmailContentType.Approval);
 
             Assert.AreEqual(_manager.GetEmail(), requestMail.From);            
@@ -54,11 +50,8 @@ namespace HolidayRequestSenderTests
         [TestMethod]
         public void Create_WhenPassingRejectedType_ReturnsRejectedMail()
         {
-            var holidayInterval = new HolidayInterval(
-                DateTime.Now.AddDays(1), DateTime.Now.AddDays(8));
-
             var holidayApplication = new HolidayApplication(
-                _requester, _manager, holidayInterval);
+                _requester, _manager, _oneWeekHolidayStartingTomorrow);
             MailMessage requestMail = holidayApplication.Create(EmailContentType.Rejection);
 
             Assert.AreEqual(_manager.GetEmail(), requestMail.From);
