@@ -15,12 +15,10 @@ namespace Usage
             var holidayApplication = new HolidayApplication(
                 requester, manager, oneWeekHolidayStartingTomorrow);
 
-            EmailSender.Send(holidayApplication.Create(EmailContentType.Request), 
-                "requesterPassword");
-            EmailSender.Send(holidayApplication.Create(EmailContentType.Approval),
-                "managerPassword");
-            EmailSender.Send(holidayApplication.Create(EmailContentType.Rejection),
-                "managerPassword");
+            var holidayRequest = new HolidayRequest(holidayApplication, new EmailNotifier());
+            holidayRequest.Request();
+            holidayRequest.Approve();
+            holidayRequest.Reject();
         }
     }
 }
