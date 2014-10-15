@@ -8,7 +8,7 @@ using System.Net.Mail;
 namespace HolidayRequestSenderTests
 {
     [TestClass]
-    public class HolidayApplicationTests
+    public class EmailComposerTests
     {
         private readonly Employee _requester = new Employee("James", "Darmody");
         private readonly Employee _manager = new Employee("Nucky", "Thompson");
@@ -16,11 +16,10 @@ namespace HolidayRequestSenderTests
             new HolidayInterval(DateTime.Now.AddDays(1), DateTime.Now.AddDays(8));
 
         [TestMethod]
-        public void Create_WhenPassingRequestType_ReturnsRequestMail()
-        {            
-            var holidayApplication = new HolidayApplication(
-                _requester, _manager, _oneWeekHolidayStartingTomorrow);
-            MailMessage requestMail = holidayApplication.Create(EmailContentType.Request);
+        public void CreateRequestMail_ReturnsRequestMail()
+        {
+            var composer = new EmailComposer(GetHolidayApplication());
+            MailMessage requestMail = composer.CreateRequestMail();
 
             Assert.AreEqual(_requester.GetEmail(), requestMail.From);
             Assert.AreEqual(_manager.GetEmail(), requestMail.To);
@@ -28,11 +27,10 @@ namespace HolidayRequestSenderTests
         }
 
         [TestMethod]
-        public void Create_WhenPassingApprovedType_ReturnsApprovedMail()
+        public void CreateApprovalMail_ReturnsApprovedMail()
         {
-            var holidayApplication = new HolidayApplication(
-                _requester, _manager, _oneWeekHolidayStartingTomorrow);
-            MailMessage requestMail = holidayApplication.Create(EmailContentType.Approval);
+            var composer = new EmailComposer(GetHolidayApplication());
+            MailMessage requestMail = composer.CreateApprovalMail();
 
             Assert.AreEqual(_manager.GetEmail(), requestMail.From);            
             Assert.AreEqual(_requester.GetEmail(), requestMail.CC.First());            
@@ -48,16 +46,20 @@ namespace HolidayRequestSenderTests
         }
 
         [TestMethod]
-        public void Create_WhenPassingRejectedType_ReturnsRejectedMail()
+        public void CreateRejectionMail_ReturnsRejectedMail()
         {
-            var holidayApplication = new HolidayApplication(
-                _requester, _manager, _oneWeekHolidayStartingTomorrow);
-            MailMessage requestMail = holidayApplication.Create(EmailContentType.Rejection);
+            var composer = new EmailComposer(GetHolidayApplication());
+            MailMessage requestMail = composer.CreateRejectionMail();
 
             Assert.AreEqual(_manager.GetEmail(), requestMail.From);
             Assert.AreEqual(_requester.GetEmail(), requestMail.To);
             Assert.IsTrue(requestMail.Subject.StartsWith("[rejected]",
                 StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        private HolidayApplication GetHolidayApplication()
+        {
+            return new HolidayApplication(_requester, _manager, _oneWeekHolidayStartingTomorrow);
         }
     }
 }
