@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
@@ -52,8 +55,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="EmployeeTests.cs" />
-    <Compile Include="HolidayApplicationTests.cs" />
+    <Compile Include="EmailComposerTests.cs" />
     <Compile Include="HolidayIntervalTests.cs" />
+    <Compile Include="HolidayRequestTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +70,7 @@
     <None Include="..\Usage\App.config">
       <Link>App.config</Link>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
