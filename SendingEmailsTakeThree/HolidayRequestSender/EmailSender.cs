@@ -6,13 +6,14 @@ namespace HolidayRequestSender
 {
     public class EmailSender
     {
-        public static void Send(MailMessage mail, string senderPassword)
+        public static void Send(MailMessage mail)
         {
             using (var smtp = new SmtpClient())
             {
                 smtp.Host = ConfigurationManager.AppSettings["smtpHost"];
                 smtp.Port = int.Parse(ConfigurationManager.AppSettings["smtpPort"]);
-                smtp.Credentials = new NetworkCredential(mail.From.Address, senderPassword);
+                smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["appUsername"],
+                                                         ConfigurationManager.AppSettings["appPassword"]);
                 smtp.EnableSsl = true;
 
                 smtp.Send(mail);
