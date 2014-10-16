@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace HolidayRequestSender
 {
-    public class EmailSender
+    public class Email
     {
         public static void Send(MailMessage mail)
         {

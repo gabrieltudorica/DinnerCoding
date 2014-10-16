@@ -15,10 +15,10 @@ namespace Usage
             var holidayApplication = new HolidayApplication(
                 requester, manager, oneWeekHolidayStartingTomorrow);
 
-            var holidayRequest = new HolidayRequest(holidayApplication, new EmailNotifier());
-            holidayRequest.Request();
-            holidayRequest.Approve();
-            holidayRequest.Reject();
+            var holidayRequest = new Holiday(new EmailNotifier());
+            holidayRequest.Request(holidayApplication);
+            holidayRequest.Approve(holidayApplication);
+            holidayRequest.Reject(holidayApplication);
         }
     }
 }

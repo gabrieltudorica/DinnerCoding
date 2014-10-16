@@ -42,11 +42,11 @@
   <ItemGroup>
     <Compile Include="EmailComposer.cs" />
     <Compile Include="EmailNotifier.cs" />
-    <Compile Include="EmailSender.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="HolidayApplication.cs" />
     <Compile Include="HolidayInterval.cs" />
-    <Compile Include="HolidayRequest.cs" />
+    <Compile Include="Holiday.cs" />
     <Compile Include="INotifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

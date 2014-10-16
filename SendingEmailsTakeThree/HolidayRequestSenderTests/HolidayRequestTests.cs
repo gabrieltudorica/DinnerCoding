@@ -21,8 +21,8 @@ namespace HolidayRequestSenderTests
             var notifierMock = new Mock<INotifier>();
             notifierMock.Setup(m => m.Request(It.IsAny<HolidayApplication>())).Verifiable();
 
-            var holidayRequest = new HolidayRequest(holidayApplication, notifierMock.Object);
-            holidayRequest.Request();
+            var holidayRequest = new Holiday(notifierMock.Object);
+            holidayRequest.Request(holidayApplication);
 
             notifierMock.Verify(m=>m.Request(holidayApplication));
         }
@@ -35,8 +35,8 @@ namespace HolidayRequestSenderTests
             var notifierMock = new Mock<INotifier>();
             notifierMock.Setup(m => m.Approve(It.IsAny<HolidayApplication>())).Verifiable();
 
-            var holidayRequest = new HolidayRequest(holidayApplication, notifierMock.Object);
-            holidayRequest.Approve();
+            var holidayRequest = new Holiday(notifierMock.Object);
+            holidayRequest.Approve(holidayApplication);
 
             notifierMock.Verify(m => m.Approve(holidayApplication));
         }
@@ -49,8 +49,8 @@ namespace HolidayRequestSenderTests
             var notifierMock = new Mock<INotifier>();
             notifierMock.Setup(m => m.Reject(It.IsAny<HolidayApplication>())).Verifiable();
 
-            var holidayRequest = new HolidayRequest(holidayApplication, notifierMock.Object);
-            holidayRequest.Reject();
+            var holidayRequest = new Holiday(notifierMock.Object);
+            holidayRequest.Reject(holidayApplication);
 
             notifierMock.Verify(m => m.Reject(holidayApplication));
         }
